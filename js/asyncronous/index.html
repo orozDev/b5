@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+<body>
+<script>
+
+    // const promise = new Promise((resolve, reject) => {
+    //   reject()
+    //   resolve()
+    // })
+
+    const sleep = (seconds) => new Promise((res, rej) => setTimeout(() => res(), seconds * 1000))
+
+    const _fetch = (url) => new Promise((resolve, reject) => {
+        sleep(4).then(() => {
+            const currentMinute = new Date().getMinutes()
+            console.log(`Current minute is ${currentMinute}`)
+            if (currentMinute % 2 === 0) {
+                resolve({
+                    url: url,
+                    body: {
+                        status: 200,
+                        data: {
+                            user: 'oroz',
+                        }
+                    }
+                })
+            } else {
+                reject({
+                    url: url,
+                    body: {
+                        status: 400,
+                        data: null
+                    }
+                })
+            }
+        })
+    })
+
+    console.log('Sending request...')
+
+    const response = _fetch('https://youtube.com/')
+
+    response.then((res) => {
+        console.log(`The request is accepted, url is ${res.url}`)
+        console.log(res.body)
+    }).catch((res) => {
+        console.log(`The request is bad, url is ${res.url}`)
+        console.log(res.body)
+    })
+
+    console.log('End!')
+
+</script>
+</body>
+</html>
