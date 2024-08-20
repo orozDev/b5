@@ -22,18 +22,15 @@
             const currentMinute = new Date().getMinutes()
             console.log(`Current minute is ${currentMinute}`)
             if (currentMinute % 2 === 0) {
-                resolve({
-                    url: url,
-                    body: {
-                        status: 200,
-                        data: {
-                            user: 'oroz',
-                        }
-                    }
-                })
+                resolve(new Promise((resolve2, reject2) => {
+                    console.log('Data is preparing...')
+                    sleep(2).then(() => {
+                        resolve2(JSON.parse(`{"url": "${url}", "body": {"status": 200, "data": { "user": "oroz"}}}`))
+                    })
+                }))
             } else {
                 reject({
-                    url: url,
+                    url,
                     body: {
                         status: 400,
                         data: null
@@ -48,14 +45,19 @@
     const response = _fetch('https://youtube.com/')
 
     response.then((res) => {
+        console.log('The data has gotten')
+        return res
+    }).then(res => {
         console.log(`The request is accepted, url is ${res.url}`)
         console.log(res.body)
     }).catch((res) => {
         console.log(`The request is bad, url is ${res.url}`)
         console.log(res.body)
+    }).finally((res) => {
+        console.log('End!')
     })
 
-    console.log('End!')
+    console.log('Start!')
 
 </script>
 </body>
