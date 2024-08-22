@@ -33,18 +33,26 @@ const launch  = async () => {
     )
 
 
-    const createNewsForm = document.forms.createNews
+    const createNewsForm = document.forms.createNewsForm
     createNewsForm.addEventListener('submit', async (e) => {
         e.preventDefault()
+        const submitButton = document.querySelector(`form[name='createNewsForm'] button[type='submit']`)
+        submitButton.innerHTML = '<img src="https://i.gifer.com/ZZ5H.gif" width="20px"/>'
 
         const token = prompt('Enter token', 'bc64dde3eabb532f5e588771de56db8066b2f9d7')
 
         // const body = new FormData()
+        //
+        // const selectedTags = Array.from(createNewsForm.tags.options).filter((option) => option.selected).map(i => i.value)
+        // console.log(selectedTags)
+        //
         // body.append('name', createNewsForm.name.value)
         // body.append('image', createNewsForm.image.files[0])
         // body.append('description', createNewsForm.description.value)
         // body.append('content', createNewsForm.content.value)
         // body.append('category', createNewsForm.category.value)
+        // for (const tag of selectedTags) body.append('tags', tag)
+
 
         const body = new FormData(createNewsForm)
 
@@ -62,6 +70,8 @@ const launch  = async () => {
             console.log(await res.json())
         }
         else alert('News created')
+
+        submitButton.innerHTML = 'Create'
 
     })
 }
