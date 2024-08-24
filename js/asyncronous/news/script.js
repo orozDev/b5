@@ -39,6 +39,7 @@ const launch = async () => {
                     <div class="card-body">
                         <h5 class="card-title">${news.name}</h5>
                         <p class="card-text">${news.description}</p>
+                         <a href="./update_news.html?news_id=${news.id}" class="btn btn-warning">Edit</a>
                         <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>

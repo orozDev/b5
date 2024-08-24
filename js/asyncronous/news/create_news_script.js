@@ -39,7 +39,7 @@ const launch  = async () => {
         const submitButton = document.querySelector(`form[name='createNewsForm'] button[type='submit']`)
         submitButton.innerHTML = '<img src="https://i.gifer.com/ZZ5H.gif" width="20px"/>'
 
-        const token = prompt('Enter token', 'bc64dde3eabb532f5e588771de56db8066b2f9d7')
+        const token = prompt('Enter token', '4741681abd2cc25d21897d5e3fbc55cf082d46c3')
 
         // const body = new FormData()
         //
